@@ -3,6 +3,8 @@ package com.example.tickethandler;
 import java.sql.Time;
 import java.time.LocalTime;
 
+import com.example.tickethandler.TicketHandler.Status;
+
 public class Ticket {
     private Integer id;
     private Time created;
@@ -10,7 +12,7 @@ public class Ticket {
     private String job;
     private String contractorID;
     private String customerID;
-    private String status;
+    private Status status;
 
     Ticket(Integer id, String job, String customerID){
         this.id = id;
@@ -19,7 +21,6 @@ public class Ticket {
         this.created = Time.valueOf(LocalTime.now());
     }
 
- 
     public Integer getId() {
         return id;
     }
@@ -27,7 +28,6 @@ public class Ticket {
     public Time getCreated() {
         return created;
     }
-
 
     public Time getScheduledTime() {
         return scheduledTime;
@@ -45,27 +45,23 @@ public class Ticket {
         this.job = job;
     }
 
-    
     public String getContractorID() {
         return contractorID;
     }
 
-    
     public void setContractorID(String contractorID) {
         this.contractorID = contractorID;
     }
 
-    
     public String getCustomerID() {
         return customerID;
     }
 
-
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 

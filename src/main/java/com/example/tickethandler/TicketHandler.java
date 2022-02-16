@@ -8,6 +8,9 @@ import org.springframework.stereotype.Component;
 public class TicketHandler {
     private HashMap<Integer, Ticket> tickets;
     private HashMap<Integer, Ticket> closedTickets;
+    public enum Status {
+        STARTED, WAITING, WAITING2, CLOSED, CANCELLED
+    }
 
     TicketHandler() {
         this.tickets = new HashMap<Integer, Ticket>();
@@ -31,17 +34,22 @@ public class TicketHandler {
 
     public void closeTicket(Integer id, String comment) {
         Ticket ticket = this.tickets.get(id);
-        ticket.setStatus("Closed");
+        ticket.setStatus(Status.CLOSED);
         this.closedTickets.put(id, ticket);
         this.tickets.remove(id);
+        System.out.println("STATUS : " + ticket.getStatus());
     }
 
     public void cancelTicket(Integer id) {
         Ticket ticket = this.tickets.get(id);
-        ticket.setStatus("Cancelled");
+        ticket.setStatus(Status.CANCELLED);
         this.closedTickets.put(id, ticket);
         this.tickets.remove(id);
     }
 
+    public void createTicket(Integer id, String job, String customerID) {
+        Ticket ticket = new Ticket(id, job, customerID);
+        ticket.setStatus(Status.STARTED);
+    }
 
 }
